@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Il tuo stile di pensiero</title>
+<style>
+/* Layout: allineato al deck "Mind the Change": fondo bianco, fasce pesca, arancione PwC, Georgia per i titoli e Arial per il testo. Una sola veste chiara, come le slide. */
+:root{
+  --bg:#ffffff; --peach:#fff3ea; --peach-2:#ffe8d4; --fg:#202020; --muted:#66615e; --line:#e3c9b4; --accent:#fd5108;
+  --qa:#245f9e; --qb:#3a8f5c; --qc:#c0392b; --qd:#e8b100;
+  --display:Georgia,"Times New Roman",serif; --body:Arial,"Helvetica Neue",Helvetica,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{max-width:740px;margin:0 auto;display:grid;gap:28px}
+.topbar{height:8px;background:var(--accent);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)))}
+h1,h2{font-family:var(--display);font-weight:700;text-wrap:balance;margin:0;line-height:1.15;color:var(--fg)}
+h1{font-size:2.1rem}
+h2{font-size:1.4rem}
+p{margin:0}
+.eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.intro{display:grid;gap:12px;padding-top:28px}
+.intro .lead{font-size:1.05rem;color:var(--muted)}
+.callout{background:var(--peach);border-left:4px solid var(--accent);padding:14px 16px;display:grid;gap:8px}
+.progress{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:10px;display:grid;gap:6px;border-bottom:1px solid var(--peach-2)}
+.progress .bar{height:6px;background:var(--peach-2);overflow:hidden}
+.progress .bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .2s}
+.progress span{font-size:.82rem;color:var(--muted);font-variant-numeric:tabular-nums}
+ol.items{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.item{background:var(--bg);border:1px solid var(--peach-2);padding:16px;display:grid;gap:12px}
+.item.missing{border-color:var(--accent);background:var(--peach)}
+.item legend{font-weight:700;padding:0;display:flex;gap:10px}
+.item legend b{color:var(--accent);font-family:var(--display);min-width:1.6em;font-variant-numeric:tabular-nums}
+fieldset{border:0;margin:0;padding:0;display:grid;gap:12px;min-width:0}
+.scale{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.scale label{display:grid;justify-items:center;gap:6px;text-align:center;font-size:.74rem;color:var(--muted);cursor:pointer;padding:8px 2px;line-height:1.2}
+.scale label:hover{background:var(--peach)}
+.scale input{width:20px;height:20px;accent-color:var(--accent);margin:0;cursor:pointer}
+.scale input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.scale label:has(input:checked){color:var(--fg);background:var(--peach-2);font-weight:700}
+.actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:flex-end;margin-top:20px}
+button{font:inherit;font-weight:700;padding:11px 20px;cursor:pointer;border:1px solid var(--fg);background:var(--bg);color:var(--fg)}
+button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+button:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+.msg{color:var(--accent);font-size:.9rem;font-weight:700}
+.results{background:var(--peach);padding:24px;display:grid;gap:22px;border-top:6px solid var(--accent)}
+.chart{display:grid;grid-template-columns:minmax(0,240px) minmax(0,1fr);gap:28px;align-items:center}
+.chart svg{width:100%;max-width:240px;height:auto;display:block}
+.keys{display:grid;gap:10px}
+.key{display:grid;grid-template-columns:14px 1fr auto;gap:10px;align-items:center}
+.key i{width:14px;height:14px;background:var(--c)}
+.key .v{font-variant-numeric:tabular-nums;font-weight:700;font-family:var(--display);font-size:1.15rem}
+.key.top{font-weight:700}
+.model{display:grid;gap:8px}
+.model .axis{display:flex;justify-content:space-between;font-size:.7rem;font-weight:700;letter-spacing:.1em;color:var(--muted)}
+.quad{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.quad div{background:var(--c);color:#fff;padding:14px;display:grid;gap:4px;min-width:0}
+.quad .yel{color:var(--fg)}
+.quad strong{font-family:var(--display);font-size:1.15rem}
+.quad small{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.9}
+.quad span{font-size:.88rem}
+.source{font-size:.75rem;color:var(--muted)}
+@media (max-width:520px){.chart{grid-template-columns:1fr;justify-items:center}.keys{width:100%}.quad{grid-template-columns:1fr}.scale label{font-size:.66rem}h1{font-size:1.7rem}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="topbar" aria-hidden="true"></div>
+<main class="wrap">
+  <header class="intro">
+    <span class="eyebrow">Mind the Change · Il test</span>
+    <h1>Come pensi, quando lavori?</h1>
+    <p class="lead">Nessuna risposta è giusta o sbagliata: descrivono una preferenza, non una capacità.</p>
+    <div class="callout">
+      <p>Ti verranno proposte <span id="n-tot">20</span> frasi: indica fino a che punto sei d'accordo con ciascuna, su una scala da 1 a 5 (da Assolutamente d'accordo ad Assolutamente in disaccordo).</p>
+      <p><strong>Attenzione:</strong> spesso rispondiamo come VORREMMO ESSERE e non come SIAMO DAVVERO. Pensa a casi recenti e concreti in cui la frase ti rappresenta, e rispondi d'accordo solo se è così.</p>
+    </div>
+  </header>
+
+  <div class="progress" aria-live="polite"><div class="bar"><i id="pbar"></i></div><span id="ptext">0 risposte</span></div>
+
+  <form id="quiz" novalidate>
+    <ol class="items" id="items"></ol>
+    <div class="actions">
+      <span class="msg" id="msg" hidden></span>
+      <button type="button" id="reset">Ricomincia</button>
+      <button type="submit" class="primary">Scopri il tuo colore</button>
+    </div>
+  </form>
+
+  <section class="results" id="results" hidden aria-live="polite">
+    <div style="display:grid;gap:6px">
+      <span class="eyebrow">Il tuo risultato</span>
+      <h2>Grazie per aver partecipato. Ecco il tuo profilo di pensiero.</h2>
+      <p style="color:var(--muted)">Prendine nota e non condividerlo con i colleghi: lo leggeremo insieme in sala.</p>
+    </div>
+    <div class="chart"><svg id="pie" viewBox="-110 -110 220 220" role="img" aria-label="Grafico a torta dei tuoi colori"></svg><div class="keys" id="keys"></div></div>
+    <div class="model">
+      <span class="eyebrow">Il Whole Brain Model · quattro modi di pensare, che usiamo tutti</span>
+      <div class="axis"><span>STRUTTURATO</span><span>NON STRUTTURATO</span></div>
+      <div class="quad">
+        <div style="--c:var(--qa)"><strong>Blu</strong><small>Orientamento agli obiettivi</small><span>Logico, analitico, basato sui fatti. «Quali sono i numeri?»</span></div>
+        <div style="--c:var(--qd)" class="yel"><strong>Giallo</strong><small>Orientamento alla visione</small><span>Creativo, intuitivo, guarda al futuro. «Dove ci porta?»</span></div>
+        <div style="--c:var(--qb)"><strong>Verde</strong><small>Attenzione ai dettagli</small><span>Organizzato, pianificato, preciso. «Chi fa cosa, e quando?»</span></div>
+        <div style="--c:var(--qc)"><strong>Rosso</strong><small>Attenzione alle relazioni</small><span>Empatico, comunicativo, attento alle persone. «Come la vivranno?»</span></div>
+      </div>
+      <p class="source">Fonte: N. Herrmann, «The Creative Brain» (1988). Whole Brain® e HBDI® sono marchi di Herrmann International.</p>
+    </div>
+  </section>
+</main>
+
+<script>
+// q: quadrante a cui la frase contribuisce (chiave ricostruita, non quella originale di Qualtrics)
+const ITEMS = [
+  ["Penso che un approccio step-by-step sia il migliore per risolvere i problemi.","B"],
+  ["Ho un grande sogno che mi ha fornito l'impulso per la soluzione di molti dei miei problemi più importanti.","D"],
+  ["Mi piacciono le persone che sono sicure delle conclusioni a cui giungono.","A"],
+  ["Preferisco essere riconosciuto come una persona affidabile piuttosto che fantasiosa.","B"],
+  ["Spesso le idee migliori mi vengono quando non faccio nulla in particolare.","D"],
+  ["Mi affido alle intuizioni e alla sensazione di essere giusto o sbagliato quando mi muovo verso la soluzione di un problema.","C"],
+  ["A volte mi piace infrangere le regole e fare cose che non dovrei fare.","D"],
+  ["Molto di ciò che è più importante nella vita non può essere espresso a parole.","C"],
+  ["Sono fondamentalmente più competitivo con gli altri che auto-competitivo.","A"],
+  ["Mi piacerebbe trascorrere un'intera giornata \"da solo con i miei pensieri\".","D"],
+  ["Non mi piace che le cose siano incerte e imprevedibili.","B"],
+  ["Preferisco lavorare con gli altri in uno sforzo di squadra piuttosto che da solo.","C"],
+  ["È importante per me avere un posto per ogni cosa e ogni cosa al suo posto.","B"],
+  ["Idee insolite e concetti audaci mi interessano e mi intrigano.","D"],
+  ["Preferisco le istruzioni specifiche a quelle che lasciano molti dettagli opzionali.","B"],
+  ["Know-why è più importante del know-how.","A"],
+  ["Un'accurata pianificazione e organizzazione del tempo sono obbligatorie per risolvere problemi difficili.","B"],
+  ["Riesco spesso ad anticipare le soluzioni ai miei problemi.","D"],
+  ["Tendo a fare affidamento più sulle mie prime impressioni e sentimenti quando esprimo giudizi che su un'attenta analisi della situazione.","C"],
+  ["Penso che le leggi dovrebbero essere applicate rigorosamente.","B"],
+];
+const SCALE = ["Assolutamente d'accordo","Abbastanza d'accordo","Né d'accordo né in disaccordo","Piuttosto in disaccordo","Assolutamente in disaccordo"];
+const POINTS = [4,3,2,1,0];
+const COLORS = {A:"var(--qa)",B:"var(--qb)",C:"var(--qc)",D:"var(--qd)"};
+const NAMES = {A:"Blu",B:"Verde",C:"Rosso",D:"Giallo"};
+function drawPie(r){
+  const svg = document.getElementById("pie"); let a0 = -Math.PI/2, out = "";
+  const qs = ["A","B","C","D"].filter(q => r[q] > 0);
+  qs.forEach(q => {
+    const frac = r[q] / 100, a1 = a0 + frac * 2 * Math.PI, R = 100;
+    if (frac >= 0.999) out += `<circle r="${R}" fill="${COLORS[q]}"/>`;
+    else {
+      const x0 = R*Math.cos(a0), y0 = R*Math.sin(a0), x1 = R*Math.cos(a1), y1 = R*Math.sin(a1);
+      out += `<path d="M0 0 L${x0.toFixed(2)} ${y0.toFixed(2)} A${R} ${R} 0 ${frac > .5 ? 1 : 0} 1 ${x1.toFixed(2)} ${y1.toFixed(2)}Z" fill="${COLORS[q]}" stroke="var(--peach)" stroke-width="2"/>`;
+    }
+    if (r[q] >= 7) { const m = (a0 + a1) / 2; out += `<text x="${(62*Math.cos(m)).toFixed(1)}" y="${(62*Math.sin(m)).toFixed(1)}" text-anchor="middle" dominant-baseline="central" font-size="17" style="fill:${q==="D"?"#202020":"#fff"};font-family:Georgia,serif;font-weight:700">${r[q]}%</text>`; }
+    a0 = a1;
+  });
+  svg.innerHTML = out;
+  const max = Math.max(...Object.values(r));
+  document.getElementById("keys").innerHTML = ["A","B","C","D"].map(q =>
+    `<div class="key${r[q] === max ? " top" : ""}" style="--c:${COLORS[q]}"><i></i><span>${NAMES[q]}</span><span class="v">${r[q]}%</span></div>`).join("");
+}
+const KEY = "stile-pensiero-bozza";
+
+const list = document.getElementById("items");
+document.getElementById("n-tot").textContent = ITEMS.length;
+ITEMS.forEach(([text], i) => {
+  const li = document.createElement("li");
+  li.className = "item"; li.id = "it" + i;
+  li.innerHTML = `<fieldset><legend><b>${i+1}.</b><span></span></legend><div class="scale">${
+    SCALE.map((s, j) => `<label><input type="radio" name="q${i}" id="q${i}_${j}" value="${j}">${s}</label>`).join("")
+  }</div></fieldset>`;
+  li.querySelector("legend span").textContent = text;
+  list.appendChild(li);
+});
+
+const form = document.getElementById("quiz");
+function answers(){ return ITEMS.map((_, i) => { const c = form.querySelector(`input[name="q${i}"]:checked`); return c ? +c.value : null; }); }
+function progress(){
+  const n = answers().filter(v => v !== null).length;
+  document.getElementById("pbar").style.width = (n / ITEMS.length * 100) + "%";
+  document.getElementById("ptext").textContent = `${n} di ${ITEMS.length} risposte`;
+}
+try { const saved = JSON.parse(localStorage.getItem(KEY) || "[]"); saved.forEach((v, i) => { if (v !== null && v !== undefined) { const el = document.getElementById(`q${i}_${v}`); if (el) el.checked = true; } }); } catch(e) {}
+form.addEventListener("change", e => {
+  e.target.closest(".item")?.classList.remove("missing");
+  progress();
+  try { localStorage.setItem(KEY, JSON.stringify(answers())); } catch(err) {}
+});
+progress();
+
+// Punteggio: media dei punti per quadrante (così conta anche se i quadranti hanno numeri di frasi diversi), poi normalizzata a 100%
+function score(ans){
+  const sum = {A:0,B:0,C:0,D:0}, cnt = {A:0,B:0,C:0,D:0};
+  ITEMS.forEach(([, q], i) => { cnt[q]++; sum[q] += POINTS[ans[i]]; });
+  const avg = {}; let tot = 0;
+  for (const q in sum) { avg[q] = cnt[q] ? sum[q] / cnt[q] : 0; tot += avg[q]; }
+  const raw = {}; for (const q in avg) raw[q] = tot ? avg[q] / tot * 100 : 25;
+  // arrotonda mantenendo la somma a 100
+  const fl = Object.fromEntries(Object.entries(raw).map(([q, v]) => [q, Math.floor(v)]));
+  let rest = 100 - Object.values(fl).reduce((a, b) => a + b, 0);
+  Object.keys(raw).sort((a, b) => (raw[b] - fl[b]) - (raw[a] - fl[a])).slice(0, rest).forEach(q => fl[q]++);
+  return fl;
+}
+
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  const ans = answers(), msg = document.getElementById("msg");
+  const miss = ans.map((v, i) => v === null ? i : -1).filter(i => i >= 0);
+  document.querySelectorAll(".item").forEach(el => el.classList.remove("missing"));
+  if (miss.length) {
+    miss.forEach(i => document.getElementById("it" + i).classList.add("missing"));
+    msg.textContent = `Mancano ${miss.length} risposte, evidenziate in rosso.`; msg.hidden = false;
+    document.getElementById("it" + miss[0]).scrollIntoView({behavior:"smooth", block:"center"});
+    return;
+  }
+  msg.hidden = true;
+  const r = score(ans);
+  drawPie(r);
+  const res = document.getElementById("results"); res.hidden = false;
+  res.scrollIntoView({behavior:"smooth", block:"start"});
+});
+
+document.getElementById("reset").addEventListener("click", () => {
+  form.reset(); document.getElementById("results").hidden = true; document.getElementById("msg").hidden = true;
+  document.querySelectorAll(".item").forEach(el => el.classList.remove("missing"));
+  try { localStorage.removeItem(KEY); } catch(e) {}
+  progress(); window.scrollTo({top:0, behavior:"smooth"});
+});
+</script>
+</body>
+</html>

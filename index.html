@@ -104,10 +104,10 @@ button:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
       <span class="eyebrow">Il Whole Brain Model · quattro modi di pensare, che usiamo tutti</span>
       <div class="axis"><span>STRUTTURATO</span><span>NON STRUTTURATO</span></div>
       <div class="quad">
-        <div style="--c:var(--qa)"><strong>Blu</strong><small>Orientamento agli obiettivi</small><span>Logico, analitico, basato sui fatti. «Quali sono i numeri?»</span></div>
-        <div style="--c:var(--qd)" class="yel"><strong>Giallo</strong><small>Orientamento alla visione</small><span>Creativo, intuitivo, guarda al futuro. «Dove ci porta?»</span></div>
-        <div style="--c:var(--qb)"><strong>Verde</strong><small>Attenzione ai dettagli</small><span>Organizzato, pianificato, preciso. «Chi fa cosa, e quando?»</span></div>
-        <div style="--c:var(--qc)"><strong>Rosso</strong><small>Attenzione alle relazioni</small><span>Empatico, comunicativo, attento alle persone. «Come la vivranno?»</span></div>
+        <div style="--c:var(--qa)"><strong>A · Blu</strong><small>Orientamento agli obiettivi</small><span>Logico, analitico, basato sui fatti. «Quali sono i numeri?»</span></div>
+        <div style="--c:var(--qd)" class="yel"><strong>B · Giallo</strong><small>Orientamento alla visione</small><span>Creativo, intuitivo, guarda al futuro. «Dove ci porta?»</span></div>
+        <div style="--c:var(--qb)"><strong>C · Verde</strong><small>Attenzione ai dettagli</small><span>Organizzato, pianificato, preciso. «Chi fa cosa, e quando?»</span></div>
+        <div style="--c:var(--qc)"><strong>D · Rosso</strong><small>Attenzione alle relazioni</small><span>Empatico, comunicativo, attento alle persone. «Come la vivranno?»</span></div>
       </div>
       <p class="source">Fonte: N. Herrmann, «The Creative Brain» (1988). Whole Brain® e HBDI® sono marchi di Herrmann International.</p>
     </div>
@@ -117,31 +117,31 @@ button:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
 <script>
 // q: quadrante a cui la frase contribuisce (chiave ricostruita, non quella originale di Qualtrics)
 const ITEMS = [
-  ["Penso che un approccio step-by-step sia il migliore per risolvere i problemi.","B"],
-  ["Ho un grande sogno che mi ha fornito l'impulso per la soluzione di molti dei miei problemi più importanti.","D"],
+  ["Penso che un approccio step-by-step sia il migliore per risolvere i problemi.","C"],
+  ["Ho un grande sogno che mi ha fornito l'impulso per la soluzione di molti dei miei problemi più importanti.","B"],
   ["Mi piacciono le persone che sono sicure delle conclusioni a cui giungono.","A"],
-  ["Preferisco essere riconosciuto come una persona affidabile piuttosto che fantasiosa.","B"],
-  ["Spesso le idee migliori mi vengono quando non faccio nulla in particolare.","D"],
-  ["Mi affido alle intuizioni e alla sensazione di essere giusto o sbagliato quando mi muovo verso la soluzione di un problema.","C"],
-  ["A volte mi piace infrangere le regole e fare cose che non dovrei fare.","D"],
-  ["Molto di ciò che è più importante nella vita non può essere espresso a parole.","C"],
+  ["Preferisco essere riconosciuto come una persona affidabile piuttosto che fantasiosa.","C"],
+  ["Spesso le idee migliori mi vengono quando non faccio nulla in particolare.","B"],
+  ["Mi affido alle intuizioni e alla sensazione di essere giusto o sbagliato quando mi muovo verso la soluzione di un problema.","D"],
+  ["A volte mi piace infrangere le regole e fare cose che non dovrei fare.","B"],
+  ["Molto di ciò che è più importante nella vita non può essere espresso a parole.","D"],
   ["Sono fondamentalmente più competitivo con gli altri che auto-competitivo.","A"],
-  ["Mi piacerebbe trascorrere un'intera giornata \"da solo con i miei pensieri\".","D"],
-  ["Non mi piace che le cose siano incerte e imprevedibili.","B"],
-  ["Preferisco lavorare con gli altri in uno sforzo di squadra piuttosto che da solo.","C"],
-  ["È importante per me avere un posto per ogni cosa e ogni cosa al suo posto.","B"],
-  ["Idee insolite e concetti audaci mi interessano e mi intrigano.","D"],
-  ["Preferisco le istruzioni specifiche a quelle che lasciano molti dettagli opzionali.","B"],
+  ["Mi piacerebbe trascorrere un'intera giornata \"da solo con i miei pensieri\".","B"],
+  ["Non mi piace che le cose siano incerte e imprevedibili.","C"],
+  ["Preferisco lavorare con gli altri in uno sforzo di squadra piuttosto che da solo.","D"],
+  ["È importante per me avere un posto per ogni cosa e ogni cosa al suo posto.","C"],
+  ["Idee insolite e concetti audaci mi interessano e mi intrigano.","B"],
+  ["Preferisco le istruzioni specifiche a quelle che lasciano molti dettagli opzionali.","C"],
   ["Know-why è più importante del know-how.","A"],
-  ["Un'accurata pianificazione e organizzazione del tempo sono obbligatorie per risolvere problemi difficili.","B"],
-  ["Riesco spesso ad anticipare le soluzioni ai miei problemi.","D"],
-  ["Tendo a fare affidamento più sulle mie prime impressioni e sentimenti quando esprimo giudizi che su un'attenta analisi della situazione.","C"],
-  ["Penso che le leggi dovrebbero essere applicate rigorosamente.","B"],
+  ["Un'accurata pianificazione e organizzazione del tempo sono obbligatorie per risolvere problemi difficili.","C"],
+  ["Riesco spesso ad anticipare le soluzioni ai miei problemi.","B"],
+  ["Tendo a fare affidamento più sulle mie prime impressioni e sentimenti quando esprimo giudizi che su un'attenta analisi della situazione.","D"],
+  ["Penso che le leggi dovrebbero essere applicate rigorosamente.","C"],
 ];
 const SCALE = ["Assolutamente d'accordo","Abbastanza d'accordo","Né d'accordo né in disaccordo","Piuttosto in disaccordo","Assolutamente in disaccordo"];
 const POINTS = [4,3,2,1,0];
-const COLORS = {A:"var(--qa)",B:"var(--qb)",C:"var(--qc)",D:"var(--qd)"};
-const NAMES = {A:"Blu",B:"Verde",C:"Rosso",D:"Giallo"};
+const COLORS = {A:"var(--qa)",B:"var(--qd)",C:"var(--qb)",D:"var(--qc)"};
+const NAMES = {A:"Blu",B:"Giallo",C:"Verde",D:"Rosso"};
 function drawPie(r){
   const svg = document.getElementById("pie"); let a0 = -Math.PI/2, out = "";
   const qs = ["A","B","C","D"].filter(q => r[q] > 0);
@@ -152,13 +152,13 @@ function drawPie(r){
       const x0 = R*Math.cos(a0), y0 = R*Math.sin(a0), x1 = R*Math.cos(a1), y1 = R*Math.sin(a1);
       out += `<path d="M0 0 L${x0.toFixed(2)} ${y0.toFixed(2)} A${R} ${R} 0 ${frac > .5 ? 1 : 0} 1 ${x1.toFixed(2)} ${y1.toFixed(2)}Z" fill="${COLORS[q]}" stroke="var(--peach)" stroke-width="2"/>`;
     }
-    if (r[q] >= 7) { const m = (a0 + a1) / 2; out += `<text x="${(62*Math.cos(m)).toFixed(1)}" y="${(62*Math.sin(m)).toFixed(1)}" text-anchor="middle" dominant-baseline="central" font-size="17" style="fill:${q==="D"?"#202020":"#fff"};font-family:Georgia,serif;font-weight:700">${r[q]}%</text>`; }
+    if (r[q] >= 7) { const m = (a0 + a1) / 2; out += `<text x="${(62*Math.cos(m)).toFixed(1)}" y="${(62*Math.sin(m)).toFixed(1)}" text-anchor="middle" dominant-baseline="central" font-size="17" style="fill:${q==="B"?"#202020":"#fff"};font-family:Georgia,serif;font-weight:700">${r[q]}%</text>`; }
     a0 = a1;
   });
   svg.innerHTML = out;
   const max = Math.max(...Object.values(r));
   document.getElementById("keys").innerHTML = ["A","B","C","D"].map(q =>
-    `<div class="key${r[q] === max ? " top" : ""}" style="--c:${COLORS[q]}"><i></i><span>${NAMES[q]}</span><span class="v">${r[q]}%</span></div>`).join("");
+    `<div class="key${r[q] === max ? " top" : ""}" style="--c:${COLORS[q]}"><i></i><span>${q} · ${NAMES[q]}</span><span class="v">${r[q]}%</span></div>`).join("");
 }
 const KEY = "stile-pensiero-bozza";
 
